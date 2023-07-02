@@ -1,5 +1,5 @@
 const { body } = require('express-validator');
-const cacheMiddleware = require('../cacheMiddleware');
+const cacheMiddleware = require('../Middlewares/cacheMiddleware');
 let { ProductController } = require("../Controllers/productController");
 let product_controller = new ProductController();
 
