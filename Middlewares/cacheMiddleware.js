@@ -1,4 +1,4 @@
-const client = require('./redisClient');
+const client = require('../redisClient');
 
 function cacheMiddleware(req, res, next) {
     const productId = req.params.id;
