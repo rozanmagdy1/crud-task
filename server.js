@@ -11,18 +11,44 @@ const accessLogStream = fs.createWriteStream('./access.log', { flags: 'a' });
 
 connectDB();
 
-const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan('combined', { stream: accessLogStream }));
+const app1 = express();
+app1.use(cors());
+app1.use(bodyParser.json());
+app1.use(bodyParser.urlencoded({ extended: false }));
+app1.use(morgan('combined', { stream: accessLogStream }));
 
-routes(app);
+const app2 = express();
+app2.use(cors());
+app2.use(bodyParser.json());
+app2.use(bodyParser.urlencoded({ extended: false }));
+app2.use(morgan('combined', { stream: accessLogStream }));
 
-app.use(errorHandler);
+const app3 = express();
+app3.use(cors());
+app3.use(bodyParser.json());
+app3.use(bodyParser.urlencoded({ extended: false }));
+app3.use(morgan('combined', { stream: accessLogStream }));
+
+routes(app1);
+routes(app2);
+routes(app3);
+app1.use(errorHandler);
+app2.use(errorHandler);
+app3.use(errorHandler);
 
 
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-    console.log(`running on http://localhost:${PORT}`);
+const PORT1 = process.env.PORT1 || 3001;
+const PORT2 = process.env.PORT2 || 3002;
+const PORT3 = process.env.PORT3 || 3003;
+
+app1.listen(PORT1, () => {
+    console.log(`App 1 is running on http://localhost:${PORT1}`);
+});
+
+app2.listen(PORT2, () => {
+    console.log(`App 2 is running on http://localhost:${PORT2}`);
+});
+
+app3.listen(PORT3, () => {
+    console.log(`App 3 is running on http://localhost:${PORT3}`);
 });
